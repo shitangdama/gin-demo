@@ -1,9 +1,11 @@
 #!/bin/sh
 set -e
 
+# 1.使用 genrsa 命令生成密钥长度为 2048 比特的 RSA 密钥对
 openssl genrsa \
   -out ca-key.pem 2048
 
+# 2.使用私钥（ca-key.pem）生成 CSR ca.pem）
 openssl req \
   -x509 \
   -new \
