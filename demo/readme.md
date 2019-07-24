@@ -1,5 +1,8 @@
 关于测试
 
+kubectl replace --force -f pods/hello-flask-app.yaml
+
+
 cat pods/monolith.yaml
 kubectl create -f pods/monolith.yaml
 kubectl get pods
@@ -39,19 +42,29 @@ kubectl port-forward secure-monolith 10443:443
 curl --cacert tls/ca.pem https://127.0.0.1:10443
 kubectl logs -c nginx secure-monolith
 
-
 cat services/monolith.yaml
 kubectl create -f services/monolith.yaml
 
 关于deployment
 
 cat deployment/auth.yaml
+
 kubectl create -f deployments/auth.yaml
+kubectl create -f services/auth.yaml
+kubectl create -f deployments/hello.yaml
+kubectl create -f services/hello.yaml
+
 kubectl describe deployments auth
 
+kubectl create secret generic tls-certs --from-file=tls/
 kubectl create configmap nginx-frontend-conf --from-file=nginx/frontend.conf
 kubectl create -f deployments/frontend.yaml
 kubectl create -f services/frontend.yaml
 kubectl get services frontend
 
 curl -k https://localhost
+
+EXTERNAL-IP会有问题
+使用minikube ssh进入内部可直接使用内网ip
+使用ingress
+https://stackoverflow.com/questions/39850819/kubernetes-minikube-external-ip-does-not-work

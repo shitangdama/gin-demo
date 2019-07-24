@@ -17,3 +17,8 @@ https://github.com/udacity/ud615
 
 ipvsadm  可以直接控制lvs
 keepalived + lvs，keepalived 也能配置
+
+Helm
+Traefik Ingress
+
+安装
