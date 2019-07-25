@@ -68,3 +68,5 @@ EXTERNAL-IP会有问题
 使用minikube ssh进入内部可直接使用内网ip
 使用ingress
 https://stackoverflow.com/questions/39850819/kubernetes-minikube-external-ip-does-not-work
+
+从新部署ingress 设置域名
