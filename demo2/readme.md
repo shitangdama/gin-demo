@@ -21,9 +21,7 @@ curl $(minikube service echoserver --url)
 docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/echoserver:1.4
 docker tag  registry.cn-hangzhou.aliyuncs.com/google-containers/echoserver:1.4 gcr.io/google-containers/echoserver:1.4
 
-
 minikube没有rbac
-
 
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
@@ -39,3 +37,11 @@ $ ./get_helm.sh
 $ helm init --upgrade --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.2 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 
 如何设置pv和pvc
+
+关于 k8s mysql pv pvc nfs 编排
+
+
+
+本地pv
+
+使用nfs

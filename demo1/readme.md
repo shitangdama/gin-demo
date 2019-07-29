@@ -34,3 +34,12 @@ service
 headless sevice 没有vip做头，设置cluster ip 为none 不会被分派vip
 pod-name.svc-name.namespace.svc.cluster.local
 
+
+kubectl apply -f nginx-statfulset.yaml
+
+kubectl get pods -w 
+
+
+volumeClaimTemplates
+
+
