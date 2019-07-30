@@ -10,3 +10,10 @@
 kubectl port-forward xxxx 10080:80
 
 StorageClass 和 pvc区别
+
+
+1. emptyDir
+生存周期和pod一样
+
+2. hostPath Volume 
+
