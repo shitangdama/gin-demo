@@ -40,3 +40,9 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 docker tag  registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64:v1.10.1 k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 
 关于设置hostnetwork: true
+
+
+helm 中的rbac
+https://helm.sh/docs/using_helm/#role-based-access-control
+
+helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.13.1 --skip-refresh
