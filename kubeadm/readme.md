@@ -65,3 +65,7 @@ helm install stable/nginx-ingress -f nginx-ingress.yaml -n nginx-ingress --names
 helm del --purge kubernetes-dashboard
 helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kube-system
 
+default-backend.yaml为什么没有了
+
+
+cert-manager 签发证书
