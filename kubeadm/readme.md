@@ -41,8 +41,27 @@ docker tag  registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashb
 
 关于设置hostnetwork: true
 
+关于容忍
+kubectl taint nodes --all node-role.kubernetes.io/master-
 
 helm 中的rbac
 https://helm.sh/docs/using_helm/#role-based-access-control
 
-helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.13.1 --skip-refresh
+
+注意helm的server版本和client版本
+不一致需要删除对应的client的deploy和svc，server中的.helm
+helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+scp -P 6000 helm-v2.14.1-linux-amd64.tar.gz  shitangdama@118.24.133.253:/home/shitangdama/gin-demo/kubeadm 
+
+<!-- helm install stable/nginx-ingress \
+-n nginx-ingress \
+--namespace ingress-nginx -->
+
+helm install stable/nginx-ingress -f nginx-ingress.yaml -n nginx-ingress --namespace nginx-ingress
+
+会有权限问题
+
+helm del --purge kubernetes-dashboard
+helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kube-system
+
