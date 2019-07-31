@@ -38,3 +38,5 @@ kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 
 docker tag  registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64:v1.10.1 k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+
+关于设置hostnetwork: true
