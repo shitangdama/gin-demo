@@ -45,3 +45,8 @@ $ helm init --upgrade --tiller-image registry.cn-hangzhou.aliyuncs.com/google_co
 本地pv
 
 使用nfs
+
+
+使用nfs部署mysql
+
+使用s

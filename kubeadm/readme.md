@@ -41,6 +41,8 @@ docker tag  registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashb
 
 关于设置hostnetwork: true
 
+kubectl describe secret -n kube-system dashboard-admin-token
+
 关于容忍
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
@@ -69,3 +71,53 @@ default-backend.yaml为什么没有了
 
 
 cert-manager 签发证书
+
+<!-- helm install \
+    --name cert-manager \
+    --namespace kube-system \
+    stable/cert-manager
+
+
+这里配置又一个问题
+
+k8s提供Issuer跟ClusterIssuer两种，前者是单一namespace使用，后者是cluster wide也就是每個namespace都可以reference到。 需要创建一个ClusterIssuer -->
+
+写的教程有问题
+对比中英的比较
+
+初始化的一个又一个yaml可以学习？
+
+CustomResourceDefinitions是什么？
+
+流程
+```
+# Install the cert-manager CRDs. We must do this before installing the Helm
+# chart in the next step for `release-0.8` of cert-manager:
+$ kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+
+# Create the namespace for cert-manager
+$ kubectl create namespace cert-manager
+
+## IMPORTANT: if the cert-manager namespace **already exists**, you MUST ensure
+## it has an additional label on it in order for the deployment to succeed
+$ kubectl label namespace cert-manager certmanager.k8s.io/disable-validation="true"
+
+## Add the Jetstack Helm repository
+$ helm repo add jetstack https://charts.jetstack.io
+## Updating the repo just incase it already existed
+$ helm repo update
+
+## Install the cert-manager helm chart
+$ helm install \
+  --name cert-manager \
+  --namespace cert-manager \
+  --version v0.8.1 \
+  jetstack/cert-manager
+```
+
+文档和blog差距比较大
+还是要重读一遍文档
+
+
+
+ $ kubectl describe issuer letsencrypt-prod
