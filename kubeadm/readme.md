@@ -118,7 +118,9 @@ $ helm install \
 文档和blog差距比较大
 还是要重读一遍文档
 
-kubectl apply -f issuer.yaml 
+kubectl apply -f staging-issuer.yaml 
+kubectl delete -f staging-issuer.yaml 
+kubectl describe issuer letsencrypt-staging
 
 
 一定要查看下状态，可能timeout
@@ -127,3 +129,5 @@ kubectl apply -f issuer.yaml
  nslookup acme-v02.api.letsencrypt.org
 
  这里kubedns
+
+ kubectl exec -it -n cert-manager cert-manager-54dffbdd8b-lpwt7 /bin/bash
