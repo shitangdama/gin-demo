@@ -115,8 +115,6 @@ $ helm install \
   jetstack/cert-manager
 ```
 helm del --purge cert-manager
-文档和blog差距比较大
-还是要重读一遍文档
 
 kubectl apply -f production-issuer.yaml 
 kubectl delete -f production-issuer.yaml 
@@ -150,3 +148,6 @@ Metric?
 
 kubectl apply -f nginx-ingress.yaml
 kubectl apply -f dashboard_ingress.yaml
+
+kubectl apply -f dashboard_ingress.yaml
+kubectl apply -f dashboard_ingress_v1.yaml

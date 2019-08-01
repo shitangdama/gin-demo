@@ -17,7 +17,7 @@ spec:
     - host: dashboard.shitangdama.cn
       http:
         paths:
-        - path: /
+        - path: /dashboard
           backend:
             serviceName: kubernetes-dashboard
             servicePort: 443
