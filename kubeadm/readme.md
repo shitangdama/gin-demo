@@ -114,9 +114,13 @@ $ helm install \
   --version v0.8.1 \
   jetstack/cert-manager
 ```
-
+helm del --purge cert-manager
 文档和blog差距比较大
 还是要重读一遍文档
+
+kubectl apply -f production-issuer.yaml 
+kubectl delete -f production-issuer.yaml 
+kubectl describe issuer letsencrypt-prod
 
 kubectl apply -f staging-issuer.yaml 
 kubectl delete -f staging-issuer.yaml 
@@ -126,8 +130,8 @@ kubectl describe issuer letsencrypt-staging
 一定要查看下状态，可能timeout
  $ kubectl describe issuer letsencrypt-prod
 
- nslookup acme-v02.api.letsencrypt.org
+ nslookup https://acme-staging-v02.api.letsencrypt.org/directory
 
  这里kubedns
-
+ kubectl logs cert-manager-54dffbdd8b-nr4r6 -n cert-manager
  kubectl exec -it -n cert-manager cert-manager-54dffbdd8b-lpwt7 /bin/bash
