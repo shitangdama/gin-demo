@@ -135,3 +135,6 @@ kubectl apply -f cert-manager.yaml -n cert-manager
  这里kubedns
  kubectl logs cert-manager-68545dc6b7-dg4db  -n cert-manager
  kubectl exec -it -n cert-manager cert-manager-54dffbdd8b-lpwt7 /bin/bash
+
+遇到的bug是kube dns
+修改cert-manager里面的dns解析
