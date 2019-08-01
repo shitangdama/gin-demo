@@ -210,7 +210,7 @@ spec:
         prometheus.io/port: "10254"
         prometheus.io/scrape: "true"
     spec:
-      # hostNetwork: true
+      hostNetwork: true
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
         - name: nginx-ingress-controller

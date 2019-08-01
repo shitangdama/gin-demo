@@ -148,5 +148,5 @@ kubectl logs --tail=20 kubernetes-dashboard-7d75c474bb-h9rdf -n kube-system
 
 Metric?
 
-
+kubectl apply -f nginx-ingress.yaml
 kubectl apply -f dashboard_ingress.yaml
