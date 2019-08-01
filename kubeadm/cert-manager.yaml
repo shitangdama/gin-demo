@@ -63,8 +63,8 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-      podDnsPolicy: "None"
-      podDnsConfig:
+      dnsPolicy: "None"
+      dnsConfig:
         nameservers:
           - "1.1.1.1"
           - "8.8.8.8"
