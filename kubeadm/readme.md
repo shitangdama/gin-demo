@@ -126,12 +126,12 @@ kubectl apply -f staging-issuer.yaml
 kubectl delete -f staging-issuer.yaml 
 kubectl describe issuer letsencrypt-staging
 
-
+kubectl apply -f cert-manager.yaml -n cert-manager
 一定要查看下状态，可能timeout
  $ kubectl describe issuer letsencrypt-prod
 
  nslookup https://acme-staging-v02.api.letsencrypt.org/directory
 
  这里kubedns
- kubectl logs cert-manager-54dffbdd8b-nr4r6 -n cert-manager
+ kubectl logs cert-manager-68545dc6b7-dg4db  -n cert-manager
  kubectl exec -it -n cert-manager cert-manager-54dffbdd8b-lpwt7 /bin/bash
