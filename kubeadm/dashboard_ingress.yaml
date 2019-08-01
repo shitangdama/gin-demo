@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: dashboard-ingress
-  # namespace: ingress-nginx
+  namespace: kube-system
   annotations:
     kubernetes.io/ingress.class: "nginx"    
     certmanager.k8s.io/issuer: "letsencrypt-prod"
@@ -18,5 +18,5 @@ spec:
         paths:
         - path: /dashboard
           backend:
-            serviceName: kubernetes-dashboard.kube-system
+            serviceName: kubernetes-dashboard
             servicePort: 443
