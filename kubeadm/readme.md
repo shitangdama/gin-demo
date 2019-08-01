@@ -138,3 +138,8 @@ kubectl apply -f cert-manager.yaml -n cert-manager
 
 遇到的bug是kube dns
 修改cert-manager里面的dns解析
+要用这个判断下
+https://github.com/nicolaka/netshoot
+
+kubectl logs --since=1h nginx
+ kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-bl8ps -n ingress-nginx 
