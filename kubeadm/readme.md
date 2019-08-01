@@ -118,6 +118,12 @@ $ helm install \
 文档和blog差距比较大
 还是要重读一遍文档
 
+kubectl apply -f issuer.yaml 
 
 
+一定要查看下状态，可能timeout
  $ kubectl describe issuer letsencrypt-prod
+
+ nslookup acme-v02.api.letsencrypt.org
+
+ 这里kubedns
