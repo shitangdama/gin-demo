@@ -31,3 +31,4 @@ clusterrole 可以跨namespace
 - 集群范围的资源，例如Node
 - 非资源型的路径，例如/healthz
 - 包含全部命名空间的资源，例如pods
+

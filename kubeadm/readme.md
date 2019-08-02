@@ -143,6 +143,8 @@ kubectl logs --since=1h nginx
 kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-bl8ps -n ingress-nginx 
 
 kubectl logs --tail=20 kubernetes-dashboard-7d75c474bb-h9rdf -n kube-system
+kubectl describe pod kubernetes-dashboard-7d75c474bb-h9rdf -n kube-system
+
 
 Metric?
 
@@ -155,3 +157,15 @@ kubectl apply -f dashboard_ingress_v2.yaml
 
 kubectl delete -f dashboard_ingress.yaml
 kubectl delete -f dashboard_ingress_v1.yaml
+
+
+kubectl apply -f dashboard-cert.yaml
+
+
+kubectl apply -f production-issuer_v1.yaml 
+kubectl delete -f production-issuer_v1.yaml 
+kubectl describe issuer letsencrypt-prod
+
+kubectl get certificates -n kube-system
+
+kubectl delete certificates dashboard-cert -n kube-system
