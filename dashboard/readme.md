@@ -157,7 +157,7 @@ kubectl apply -f dashboard_ingress_v2.yaml
 
 kubectl delete -f dashboard_ingress.yaml
 kubectl delete -f dashboard_ingress_v1.yaml
-
+kubectl delete -f dashboard_ingress_v2.yaml
 
 kubectl apply -f dashboard-cert.yaml
 

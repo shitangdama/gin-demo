@@ -27,3 +27,4 @@ sudo sed -e "s/- --address=127.0.0.1/- --address=0.0.0.0/" -i /etc/kubernetes/ma
 kubectl cluster-info
 
 prometheus-operator
+
