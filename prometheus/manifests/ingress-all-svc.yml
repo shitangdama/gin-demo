@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-ing
+  namespace: monitoring
+spec:
+  rules:
+  - host: dama.datayang.com
+    http:
+      paths:
+      - path: /prometheus
+        backend:
+          serviceName: prometheus-k8s
+          servicePort: 9090
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-ing
+  namespace: monitoring
+spec:
+  rules:
+  - host: dama.datayang.com
+    http:
+      paths: 
+      - path: /grafana
+        backend:
+          serviceName: grafana
+          servicePort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: alertmanager-ing
+  namespace: monitoring
+spec:
+  rules:
+  - host: dama.datayang.com
+    http:
+      paths:
+      - path: /alertmanager
+        backend:
+          serviceName: alertmanager-main
+          servicePort: 9093
