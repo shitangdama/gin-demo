@@ -53,7 +53,7 @@ rules中的参数说明：
 　　    非资源型的路径，例如/healthz
 
 　　    包含全部命名空间的资源，例如pods
-
+https://jimmysong.io/kubernetes-handbook/concepts/rbac.html
 
 写个前端
 
@@ -63,3 +63,8 @@ rules中的参数说明：
 
 
 关于用户组设置
+
+
+使用client-go链接集群
+
+学习kubeconfig, 是什么
