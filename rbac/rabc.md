@@ -37,34 +37,24 @@ API group - The API group being accessed (for resource requests only). An empty 
 需要一个前端和后段存储用户关系和认证
 
 rules中的参数说明：
-
-　　  - apiGroup：支持的API组列表，例如：APIVersion: batch/v1、APIVersion: extensions:v1、apiVersion:apps/v1等
-
-　　    resources：支持的资源对象列表，例如：pods、deployments、jobs等
-
-　　    verbs：对资源对象的操作方法列表，例如：get、watch、list、delete、replace、patch等
+    - apiGroup：支持的API组列表，例如：APIVersion: batch/v1、APIVersion: extensions:v1、apiVersion:apps/v1等
+    resources：支持的资源对象列表，例如：pods、deployments、jobs等
+    verbs：对资源对象的操作方法列表，例如：get、watch、list、delete、replace、patch等
 
 - 集群角色(ClusterRole)
+    集群角色除了具有和角色一致的命名空间内资源的管理能力，因其集群级别的范围，还可以用于以下特殊元素的授权。    
+    - 集群范围的资源，例如Node
+    非资源型的路径，例如/healthz
+    包含全部命名空间的资源，例如pods
 
-　　  集群角色除了具有和角色一致的命名空间内资源的管理能力，因其集群级别的范围，还可以用于以下特殊元素的授权。
-
-　　  - 集群范围的资源，例如Node
-
-　　    非资源型的路径，例如/healthz
-
-　　    包含全部命名空间的资源，例如pods
 https://jimmysong.io/kubernetes-handbook/concepts/rbac.html
 
 写个前端
-
 先要有用户的认证
-
 然后创建不同的用户，组，角色
-
-
 关于用户组设置
-
 
 使用client-go链接集群
 
 学习kubeconfig, 是什么
+client都是使用kubeconfig处理
