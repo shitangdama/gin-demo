@@ -28,3 +28,7 @@ kubectl cluster-info
 
 prometheus-operator
 
+#建立监控命名空间
+kubectl create namespace monitoring
+
+https://github.com/coreos/kube-prometheus
