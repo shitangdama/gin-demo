@@ -1,5 +1,5 @@
 {
-  "CN": "devuser",
+  "CN": "kubernetes-admin",
   "hosts": [],
   "key": {
     "algo": "rsa",

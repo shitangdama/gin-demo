@@ -14,4 +14,36 @@ ca-key.pem  ca.pem ca-config.json  devuser-csr.json
 /etc/kubernetes/pki/ca.crt 证书
 /etc/kubernetes/pki/ca.key 私钥
 
-cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes devuser-csr.json | cfssljson -bare devuser
+cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
+
+产生
+admin.csr  admin-key.pem  admin.pem
+
+# 设置集群参数
+kubectl config set-cluster kubernetes \
+--certificate-authority=/etc/kubernetes/pki/ca.crt \
+--embed-certs=true \
+--server=https://dama_api.datayang.com \
+--kubeconfig=admin.kubeconfig 
+
+kubeconfig 设置地址
+
+# 设置客户端认证参数
+kubectl config set-credentials kubernetes-admin \
+--client-certificate=/etc/kubernetes/pki/user/admin.pem \
+--client-key=/etc/kubernetes/pki/user/admin-key.pem \
+--embed-certs=true \
+--kubeconfig=admin.kubeconfig
+
+# 设置上下文参数
+kubectl config set-context kubernetes-admin@kubernetes \
+--cluster=kubernetes \
+--user=kubernetes-admin \
+--kubeconfig=admin.kubeconfig
+<!-- --namespace=dev \ -->
+# 设置默认上下文
+kubectl config use-context kubernetes-admin@kubernetes --kubeconfig=admin.kubeconfig
+
+
+在创建一个账号和kubernetes-admin一样
+
