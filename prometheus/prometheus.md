@@ -58,7 +58,7 @@ kubectl apply -f node-exporter/
 kubectl apply -f grafana/
 kubectl apply -f prometheus/
 kubectl apply -f serviceMonitor/
-
+kubectl apply -f kube-state-metrics/
 
 kubectl get all -n monitoring
 
@@ -71,6 +71,7 @@ kubectl get all -n monitoring
 使用grafana实现数据可视化
 
 kubectl apply -f ingress-all-svc.yml
+kubectl delete -f ingress-all-svc.yml
 
 kubectl get ingress -n monitoring
 
