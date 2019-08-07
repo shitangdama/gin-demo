@@ -14,10 +14,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dashboard.datayang.com
+    - dama.datayang.com
     secretName: k8s-dashboard
   rules:
-    - host: dashboard.datayang.com
+    - host: dama.datayang.com
       http:
         paths:
         - path: /

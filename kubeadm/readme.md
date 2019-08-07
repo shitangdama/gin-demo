@@ -26,3 +26,21 @@ helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.
 
 kubectl apply -f nginx-ingress.yaml
 kubectl apply -f service-nodeport.yaml
+
+#cert-manager
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+kubectl create namespace cert-manager
+kubectl label namespace cert-manager certmanager.k8s.io/disable-validation="true"
+
+helm install \
+  --name cert-manager \
+  --namespace cert-manager \
+  --version v0.8.1 \
+  jetstack/cert-manager
+
+kubectl apply -f dashboard_ingress_v3.yaml
+
+kubectl delete -f dashboard_ingress_v3.yaml
+kubectl delete -f dashboard_ingress_v2.yaml
+
+kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-ds6w8 -n ingress-nginx
