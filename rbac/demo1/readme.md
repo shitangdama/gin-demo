@@ -43,3 +43,46 @@ $ sudo mv /etc/kubernetes/pki/front-proxy-client.key /etc/kubernetes/pki/front-p
 --certificate-authority=/etc/kubernetes/pki/ca.crt \
 
 这个有问题
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+
+只移动crt
+
+
+sudo mv /etc/kubernetes/pki/ca.crt /etc/kubernetes/pki/ca.crt.old
+
+sudo cp ca.csr /etc/kubernetes/pki/ca.crt
+
+ca 从新处理了不是ca
+
+再去修改apiserver.crt
+
+cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes test-csr.json | cfssljson -bare test
+
+kubectl proxy --port=8080
+
+/etc/kubernetes/pki/ca.crt: data does not contain any valid RSA or ECDSA certificates
+
+
+APISERVER
+https://192.168.123.82:6443
+
+SECRET_NAME
+default-token-q4z25
+
+
+curl https://dama_api.datayang.com:6001/api --header "Authorization: Bearer $TOKEN" --insecure
+
+研究下token签约kubeconfig
+
+curl https://dama_api.datayang.com:6001/api --header "Authorization: Bearer $TOKEN" --insecure
+
+APISERVER=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+SECRET_NAME=$(kubectl get serviceaccount default -o jsonpath='{.secrets[0].name}')
+TOKEN=$(kubectl get secret $SECRET_NAME -o jsonpath='{.data.token}' | base64 --decode)
+
+curl $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
+
+
+https://stackoverflow.com/questions/54303469/kubelet-x509-certificate-is-valid-for-10-233-0-1-not-for-ip
+
+https://www.henryxieblogs.com/2018/11/kubectl-unable-to-connect-to-server.html

@@ -1,0 +1,13 @@
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
+kubernetesVersion: v1.15.1
+apiServer:
+  certSANs:
+    - kubernetes
+    - kubernetes.default
+    - kubernetes.default.svc
+    - kubernetes.default.svc.cluster.local
+    - dama_api.datayang.com
+    - localhost
+    - 127.0.0.1
