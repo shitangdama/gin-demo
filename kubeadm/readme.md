@@ -49,6 +49,11 @@ kubectl apply -f production-issuer_v1.yaml
 kubectl delete -f production-issuer_v1.yaml
 kubectl describe issuer letsencrypt-prod
 
+kubectl apply -f production-issuer_v2.yaml
+kubectl delete -f production-issuer_v2.yaml
+kubectl describe issuer letsencrypt-prod
+
+
 kubectl apply -f dashboard_ingress_v1.yaml
 kubectl delete -f dashboard_ingress_v1.yaml
 
@@ -69,3 +74,8 @@ kubectl logs --tail=20 cert-manager-cainjector-7688bf9689-rth56 -n cert-manager
 
 kubectl get issuer -A
 kubectl get cert -A
+kubectl get order -A
+
+order是什么资源
+
+这里还需要调整
