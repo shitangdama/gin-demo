@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: dashboard-cert
+  namespace: kube-system
+spec:
+  secretName: k8s-dashboard
+  dnsNames:
+  - dama.datayang.com
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - dama.datayang.com
+  issuerRef:
+    name: letsencrypt-stg
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: ClusterIssuer

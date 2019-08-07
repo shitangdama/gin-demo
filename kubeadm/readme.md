@@ -65,3 +65,7 @@ kubectl logs --tail=20 cert-manager-68545dc6b7-59g4n -n cert-manager
 
 kubectl logs --tail=20 cert-manager-cainjector-7688bf9689-rth56 -n cert-manager
 <!-- kubectl logs --tail=20 cert-manager-webhook-dfcbcc64b-knnxt -n cert-manager -->
+
+
+kubectl get issuer -A
+kubectl get cert -A
