@@ -79,3 +79,11 @@ kubectl get order -A
 order是什么资源
 
 这里还需要调整
+
+#登陆
+
+kubectl create -f admin-role.yml
+
+kubectl -n kube-system describe secret admin-token
+
+https://rootsongjc.gitbooks.io/kubernetes-handbook/guide/kubectl-user-authentication-authorization.html

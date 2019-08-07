@@ -8,3 +8,7 @@ apiServer:
   certSANs:
   - datayang.com
   - "*.datayang.com"
+controllerManagerExtraArgs:
+  address: 0.0.0.0
+schedulerExtraArgs:
+  address: 0.0.0.0

@@ -5,10 +5,10 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: dama.datayang.com
+  - host: prometheus.datayang.com
     http:
       paths:
-      - path: /prometheus
+      - path: /
         backend:
           serviceName: prometheus-k8s
           servicePort: 9090
@@ -20,10 +20,10 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: dama.datayang.com
+  - host: grafana.datayang.com
     http:
       paths: 
-      - path: /grafana
+      - path: /
         backend:
           serviceName: grafana
           servicePort: 3000
@@ -35,10 +35,10 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: dama.datayang.com
+  - host: alert.datayang.com
     http:
       paths:
-      - path: /alertmanager
+      - path: /
         backend:
           serviceName: alertmanager-main
           servicePort: 9093

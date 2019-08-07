@@ -6,7 +6,7 @@ kubectl create -f ./metrics/
 
 kubectl -n kube-system get pods -l k8s-app=metrics-server
 
-kubectl describe pod metrics-server-6764b987d-vt95l -n kube-system
+kubectl describe pod metrics-server-6764b987d-hb5wv -n kube-system
 
 等一会
 
