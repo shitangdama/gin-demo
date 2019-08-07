@@ -9,3 +9,5 @@ sudo kubeadm init --kubernetes-version=1.15.0 \
 --ignore-preflight-errors=Swap
 
 kubeadm alpha certs renew all --config /etc/kubernetes/kubeadm-config.yaml
+
+kubeadm alpha certs renew all --config /etc/kubernetes/kubeadm-config.yaml

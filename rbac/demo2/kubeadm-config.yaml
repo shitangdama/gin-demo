@@ -4,5 +4,5 @@ imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
 kubernetesVersion: v1.15.1
 apiServer:
   certSANs:
-    - dama_api.datayang.com
+    - datayang.com
 
