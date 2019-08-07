@@ -38,9 +38,19 @@ helm install \
   --version v0.8.1 \
   jetstack/cert-manager
 
-kubectl apply -f dashboard_ingress_v3.yaml
+kubectl apply -f production-issuer.yaml 
+kubectl delete -f production-issuer.yaml 
+kubectl describe issuer letsencrypt-prod
 
+kubectl apply -f production-issuer_v1.yaml 
+kubectl delete -f production-issuer_v1.yaml 
+kubectl describe issuer letsencrypt-prod
+
+kubectl apply -f dashboard_ingress_v3.yaml
 kubectl delete -f dashboard_ingress_v3.yaml
-kubectl delete -f dashboard_ingress_v2.yaml
+
+kubectl apply -f dashboard_ingress.yaml
+kubectl delete -f dashboard_ingress.yaml
+
 
 kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-ds6w8 -n ingress-nginx
