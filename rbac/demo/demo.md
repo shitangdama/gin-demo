@@ -14,7 +14,7 @@ ca-key.pem  ca.pem ca-config.json  devuser-csr.json
 /etc/kubernetes/pki/ca.crt 证书
 /etc/kubernetes/pki/ca.key 私钥
 
-cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
+cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes kubernetes-admin-csr.json | cfssljson -bare admin
 
 产生
 admin.csr  admin-key.pem  admin.pem
@@ -23,17 +23,22 @@ admin.csr  admin-key.pem  admin.pem
 kubectl config set-cluster kubernetes \
 --certificate-authority=/etc/kubernetes/pki/ca.crt \
 --embed-certs=true \
---server=https://dama_api.datayang.com \
---kubeconfig=admin.kubeconfig 
+--server=https://192.168.123.82:6443
+
+kubectl config set-cluster kubernetes \
+--certificate-authority=/etc/kubernetes/pki/ca.crt \
+--embed-certs=true \
+--server=https://dama_api.datayang.com:6443
+<!-- --kubeconfig=test.kubeconfig  -->
 
 kubeconfig 设置地址
 
 # 设置客户端认证参数
-kubectl config set-credentials kubernetes-admin \
---client-certificate=/etc/kubernetes/pki/user/admin.pem \
---client-key=/etc/kubernetes/pki/user/admin-key.pem \
+kubectl config set-credentials test \
+--client-certificate=/etc/kubernetes/pki/user/test.pem \
+--client-key=/etc/kubernetes/pki/user/test-key.pem \
 --embed-certs=true \
---kubeconfig=admin.kubeconfig
+--kubeconfig=test.kubeconfig
 
 # 设置上下文参数
 kubectl config set-context kubernetes-admin@kubernetes \
@@ -44,6 +49,14 @@ kubectl config set-context kubernetes-admin@kubernetes \
 # 设置默认上下文
 kubectl config use-context kubernetes-admin@kubernetes --kubeconfig=admin.kubeconfig
 
-
 在创建一个账号和kubernetes-admin一样
 
+cp -f admin.kubeconfig config
+
+cfssl gencert -ca=/etc/kubernetes/pki/ca.crt -ca-key=/etc/kubernetes/pki/ca.key -config=ca-config.json -profile=kubernetes test-csr.json | cfssljson -bare test
+
+
+感觉还是有问题
+http://dockone.io/article/8807
+
+192.168.123.82 dama_api.datayang.com
