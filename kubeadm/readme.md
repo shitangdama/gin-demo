@@ -38,13 +38,19 @@ helm install \
   --version v0.8.1 \
   jetstack/cert-manager
 
+#这里临时替换dns
+kubectl apply -f cert-manager.yaml -n cert-manager
+
 kubectl apply -f production-issuer.yaml 
 kubectl delete -f production-issuer.yaml 
 kubectl describe issuer letsencrypt-prod
 
-kubectl apply -f production-issuer_v1.yaml 
-kubectl delete -f production-issuer_v1.yaml 
+kubectl apply -f production-issuer_v1.yaml
+kubectl delete -f production-issuer_v1.yaml
 kubectl describe issuer letsencrypt-prod
+
+kubectl apply -f dashboard_ingress_v1.yaml
+kubectl delete -f dashboard_ingress_v1.yaml
 
 kubectl apply -f dashboard_ingress_v3.yaml
 kubectl delete -f dashboard_ingress_v3.yaml
@@ -54,3 +60,8 @@ kubectl delete -f dashboard_ingress.yaml
 
 
 kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-ds6w8 -n ingress-nginx
+
+kubectl logs --tail=20 cert-manager-68545dc6b7-59g4n -n cert-manager
+
+kubectl logs --tail=20 cert-manager-cainjector-7688bf9689-rth56 -n cert-manager
+<!-- kubectl logs --tail=20 cert-manager-webhook-dfcbcc64b-knnxt -n cert-manager -->
