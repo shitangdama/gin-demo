@@ -7,3 +7,4 @@ networking:
 apiServer:
   certSANs:
   - datayang.com
+  - dama_api.datayang.com
