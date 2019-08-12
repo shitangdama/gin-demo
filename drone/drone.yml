@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+
+spec:
+  containers:
+  - name: drone
+    image: drone/drone:1.0.0
+    env:
+    - name: DRONE_KUBERNETES_ENABLED
+      value: true
+    - name: DRONE_KUBERNETES_NAMESPACE
+      value: default
+    - name: DRONE_GITHUB_SERVER
+      value: https://github.com
+    - name: DRONE_GITHUB_CLIENT_ID
+      value: {% your-github-client-id %}
+    - name: DRONE_GITHUB_CLIENT_SECRET
+      value: {% your-github-client-secret %}
+    - name: DRONE_RPC_SECRET
+      value: {% your-shared-secret %}
+    - name: DRONE_SERVER_HOST
+      value: {% your-drone-server-host %}
+    - name: DRONE_SERVER_PROTO
+      value: {% your-drone-server-protocol %}
+    ports:
+      - containerPort: 80
+      - containerPort: 443

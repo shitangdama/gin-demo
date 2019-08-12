@@ -14,7 +14,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - datayang.com
+    - mongodb.datayang.com
     secretName: k8s-dashboard
   rules:
     - host: mongodb.datayang.com
