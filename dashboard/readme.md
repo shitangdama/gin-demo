@@ -140,7 +140,8 @@ kubectl apply -f cert-manager.yaml -n cert-manager
 https://github.com/nicolaka/netshoot
 
 kubectl logs --since=1h nginx
-kubectl logs --tail=20 nginx-ingress-controller-7f4b7d7b5f-bl8ps -n ingress-nginx 
+ 
+kubectl logs --tail=30 nginx-ingress-controller-7f4b7d7b5f-ds6w8  -n ingress-nginx
 
 kubectl logs --tail=20 kubernetes-dashboard-7d75c474bb-h9rdf -n kube-system
 kubectl describe pod kubernetes-dashboard-7d75c474bb-h9rdf -n kube-system
