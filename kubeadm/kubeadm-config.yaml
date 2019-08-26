@@ -6,8 +6,8 @@ networking:
   podSubnet: 10.244.0.0/16
 apiServer:
   certSANs:
-  - datayang.com
-  - "*.datayang.com"
+  - shitangdama.cn
+  - "*.shitangdama.cn"
 controllerManagerExtraArgs:
   address: 0.0.0.0
 schedulerExtraArgs:
