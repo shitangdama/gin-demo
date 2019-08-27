@@ -20,6 +20,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 #对应helm的权限
+kubectl apply -f helm-rabc.yaml
 
 helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 

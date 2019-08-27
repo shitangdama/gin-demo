@@ -14,7 +14,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dama.datayang.com
+    - dashborad..com
     secretName: k8s-dashboard
   rules:
     - host: dama.datayang.com
