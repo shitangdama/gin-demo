@@ -14,10 +14,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dashborad..com
+    - dashboard.shitangdama.com
     secretName: k8s-dashboard
   rules:
-    - host: dama.datayang.com
+    - host: dashboard.shitangdama.com
       http:
         paths:
         - path: /

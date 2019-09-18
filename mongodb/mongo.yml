@@ -6,8 +6,7 @@ metadata:
     app: mongo
 spec:
   ports:
-  - name: mongo
-    port: 27017
+  - port: 27017
     targetPort: 27017
   selector:
     app: mongo
@@ -20,8 +19,7 @@ metadata:
     app: mongo-express
 spec:
   ports:
-  - name: mongo-express
-    port: 8081
+  - port: 8081
     targetPort: 8081
   selector:
     app: mongo-express
