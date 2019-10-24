@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-test
+  # namespace: NAMESPACE
+  labels:
+    # env: NAMESPACE
+    app: deployment-test
+spec:
+  selector:
+    matchLabels:
+      # env: NAMESPACE
+      app: deployment-test
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        # env: NAMESPACE
+        app: deployment-test
+    spec:
+      imagePullSecrets:
+      - name: registrykey
+      containers:
+      - name: demo
+        image: registry.shitangdama.cn/test/demo
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: deployment-test
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: deployment-test

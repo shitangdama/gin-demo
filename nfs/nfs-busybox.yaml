@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nfs-busybox
@@ -21,10 +21,9 @@ spec:
         imagePullPolicy: IfNotPresent
         name: busybox
         volumeMounts:
-          - name: nfs
+          - name: drone
             mountPath: "/mnt"
       volumes:
-      - name: nfs
-        nfs:
-          path: /nfs/
-          server: 192.168.123.82
+      - name: drone
+        persistentVolumeClaim:
+          claimName: drone
