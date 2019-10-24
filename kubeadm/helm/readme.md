@@ -9,4 +9,7 @@ helm repo update
 
 # 2方法
 kubectl apply -f helm-rbac.yaml
-helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts --history-max 200 --output yaml > tiller.yaml
+
+curl -LO https://git.io/get_helm.sh | bash

@@ -1,0 +1,1 @@
+curl -kivL -H 'Host: example.example.com' 'http://127.0.0.1'

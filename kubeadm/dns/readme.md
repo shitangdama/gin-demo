@@ -8,8 +8,6 @@ kubectl scale deployment coredns --replicas=2 -n kube-system
 #问题
 https://www.jianshu.com/p/590a8dfdf9a9
 
-#解决办法1
-https://blog.csdn.net/evanxuhe/article/details/90229597
 #解决办法2
 https://blog.csdn.net/zhangxiangui40542/article/details/85016266
 

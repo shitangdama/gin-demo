@@ -7,6 +7,8 @@ sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sud
 If your cluster was setup to utilize IPVS, run ipvsadm --clear (or similar)
 to reset your system's IPVS tables.
 
+sudo curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+
 apt-get update
 apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
@@ -18,7 +20,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 关于calico
-kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 cat <<EOF > /etc/sysctl.d/k8s.conf
   net.ipv4.ip_forward = 1
@@ -48,6 +50,7 @@ kubectl apply -f nginx-ingress.yaml
 kubectl apply -f service-nodeport.yaml
 
 kubectl apply -f kubernetes-dashboard.yaml
+
 
 我已经替换了dns
 <!-- #这里临时替换dns -->
@@ -94,3 +97,5 @@ kubectl -n kube-system describe secret admin-token
 
 
 helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kube-system -->
+
+ eyJhbGciOiJSUzI1NiIsImtpZCI6InBkclFobWNWU3A5TFR2S0dadVdYeExYQ21KeWxLVmFqaklNZTFvbTkzMmsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi10b2tlbi1wZHg4dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijc2Y2Y5YjFlLTc5NjYtNDljMi05NGE0LTA0MmU3N2FmOGE0MiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.X0OC9g98we107QzW4MSukKLWiVL892FmY0alyxs74c8OXwxmkvW6936VYuQIspI0jOgqSHsEi2TX4cKcmdJsJQ8glfDvrqZW8NVKp0sPhtNBWsSQcFMhEa3hJNdVljpL7XZDgBxmq9vwhTz6XhHvrfUNwSER8r1sje-3TLOxFxGYTHQJtxkZecfsPuIJXeWON3ekk8bFrpRJVgcdrOFXGG2wd72kEi62iPj32BzclOBvY3yxRLsltj9lB8uMWHzPM7AKkfhr5xTP_w_GHl_qCQ11RTQBxkV_bkhqMfe99nYoOKsJT_POtPprkkHU05Y6S-P3jgek5eAQ_9m9daut3A
