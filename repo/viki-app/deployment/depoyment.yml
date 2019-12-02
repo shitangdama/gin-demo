@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: viki-app
+  # namespace: NAMESPACE
+  labels:
+    # env: NAMESPACE
+    app: viki-app
+spec:
+  selector:
+    matchLabels:
+      # env: NAMESPACE
+      app: viki-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        # env: NAMESPACE
+        app: viki-app
+    spec:
+      imagePullSecrets:
+      - name: registrykey
+      containers:
+      - name: demo
+        image: registry.shitangdama.cn/dama/viki-app
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: viki-app-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: viki-app

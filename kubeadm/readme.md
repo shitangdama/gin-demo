@@ -13,7 +13,11 @@ apt-get update
 apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
+
+需要现在host中加入node
+
 sudo kubeadm init --config ./kubeadm-config.yaml
+kubeadm join 192.168.123.142:6443 --token yles1l.c3tju7c0lnsaoury --discovery-token-ca-cert-hash sha256:d29af2825a6d4c0f5f695802c41c08a170655b3add5855e304d965e0a353ebc8
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -40,6 +44,10 @@ kubectl scale deployment chat --replicas=0 -n service
 
 #容忍
 kubectl taint nodes --all node-role.kubernetes.io/master-
+node-role.kubernetes.io/master=
+
+helm 3.0
+
 
 #对应helm的权限
 kubectl apply -f helm-rbac.yaml
@@ -99,3 +107,12 @@ kubectl -n kube-system describe secret admin-token
 helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kube-system -->
 
  eyJhbGciOiJSUzI1NiIsImtpZCI6InBkclFobWNWU3A5TFR2S0dadVdYeExYQ21KeWxLVmFqaklNZTFvbTkzMmsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi10b2tlbi1wZHg4dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijc2Y2Y5YjFlLTc5NjYtNDljMi05NGE0LTA0MmU3N2FmOGE0MiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.X0OC9g98we107QzW4MSukKLWiVL892FmY0alyxs74c8OXwxmkvW6936VYuQIspI0jOgqSHsEi2TX4cKcmdJsJQ8glfDvrqZW8NVKp0sPhtNBWsSQcFMhEa3hJNdVljpL7XZDgBxmq9vwhTz6XhHvrfUNwSER8r1sje-3TLOxFxGYTHQJtxkZecfsPuIJXeWON3ekk8bFrpRJVgcdrOFXGG2wd72kEi62iPj32BzclOBvY3yxRLsltj9lB8uMWHzPM7AKkfhr5xTP_w_GHl_qCQ11RTQBxkV_bkhqMfe99nYoOKsJT_POtPprkkHU05Y6S-P3jgek5eAQ_9m9daut3A
+
+ --node-name string                              Specify the node name.
+
+ kubeadm config print init-defaults --component-configs KubeProxyConfiguration
+ 查看默认配置
+ kubeadm join 192.168.123.142:6443 --token ne2a1x.huxa0hjzhuxhzoip --discovery-token-ca-cert-hash sha256:b6237c99d0fc1e93bd852b1d34a0a0161a77122193e06f655e6b764a9e1d0758 --node-name node2
+
+helm fetch stable/jenkins 
+helm template . --name istio-init --namespace istio-system > istio-init.yaml

@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - dashboard.shitangdama.cn
-    secretName: k8s-dashboard
+    secretName: letsencrypt-prod
   rules:
     - host: dashboard.shitangdama.cn
       http:

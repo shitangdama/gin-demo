@@ -4,24 +4,26 @@
 #安装nfs
 sudo apt install nfs-kernel-server
 
+/etc/exports
+
 /node *(async,insecure,no_root_squash,no_subtree_check,rw)
 
 sudo /etc/init.d/nfs-kernel-server restart
 
+显示挂在信息
 showmount -e 192.168.123.142
 
-kubectl exec -it nfs-busybox-774d7cc7b9-5pkwz /bin/sh
+<!-- kubectl exec -it nfs-busybox-774d7cc7b9-5pkwz /bin/sh -->
 
-df -h
+<!-- df -h -->
+<!--  -->
+<!-- ll /nfs -->
+<!--  -->
+<!-- sudo /etc/init.d/networking restart -->
+<!-- sudo /etc/init.d/nfs-kernel-server restart -->
 
-ll /nfs
+<!-- mount -t nfs 192.168.123.142:/node /nfs -->
 
-sudo /etc/init.d/networking restart
-sudo /etc/init.d/nfs-kernel-server restart
-
-mount -t nfs 192.168.123.142:/node /nfs
-
-umount /mnt
 
 kubectl patch pv nfs -p '{"metadata":{"finalizers":null}}'
 

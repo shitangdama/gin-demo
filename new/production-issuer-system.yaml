@@ -1,0 +1,16 @@
+apiVersion:  cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: letsencrypt-prod-system
+  namespace: kube-system
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: kbr1990117@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod-system
+    solvers:
+    - selector: {}
+      http01:
+        ingress:
+          class: nginx

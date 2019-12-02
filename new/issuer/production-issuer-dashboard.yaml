@@ -1,0 +1,16 @@
+apiVersion:  cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: letsencrypt-prod-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: kbr1990117@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod-dashboard
+    solvers:
+    - selector: {}
+      http01:
+        ingress:
+          class: nginx

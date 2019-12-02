@@ -5,9 +5,10 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 2Gi
+    storage: 8Gi
   accessModes:
     - ReadWriteMany
   nfs:
     server: 192.168.123.142
     path: /home/shitangdama/data/
+  persistentVolumeReclaimPolicy: Delete
