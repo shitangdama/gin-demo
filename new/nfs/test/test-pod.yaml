@@ -1,0 +1,23 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-pod
+    image: registry.aliyuncs.com/jimmycmh/busybox:latest
+    command:
+      - "/bin/sh"
+    args:
+      - "-c"
+      - "touch /mnt/SUCCESS && exit 0 || exit 1"
+    volumeMounts:
+      - name: nfs-pvc
+        mountPath: "/mnt"
+  nodeSelector:
+    kubernetes.io/hostname: node2
+  restartPolicy: "Never"
+  volumes:
+    - name: nfs-pvc
+      persistentVolumeClaim:
+        claimName: test-claim

@@ -4,6 +4,8 @@
 
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 
+kubeadm config images pull
+
 If your cluster was setup to utilize IPVS, run ipvsadm --clear (or similar)
 to reset your system's IPVS tables.
 
@@ -17,6 +19,11 @@ apt-mark hold kubelet kubeadm kubectl
 需要现在host中加入node
 
 sudo kubeadm init --config ./kubeadm-config.yaml
+
+
+kubeadm config migrate --old-config ./kubeadm-config.yaml --new-config new.yaml
+
+
 kubeadm join 192.168.123.142:6443 --token yles1l.c3tju7c0lnsaoury --discovery-token-ca-cert-hash sha256:d29af2825a6d4c0f5f695802c41c08a170655b3add5855e304d965e0a353ebc8
 
 mkdir -p $HOME/.kube
@@ -64,8 +71,8 @@ kubectl apply -f kubernetes-dashboard.yaml
 <!-- #这里临时替换dns -->
 <!-- kubectl apply -f cert-manager.yaml -n cert-manager -->
 
-<!-- kubectl apply -f production-issuer.yaml 
-kubectl delete -f production-issuer.yaml 
+<!-- kubectl apply -f production-issuer.yaml
+kubectl delete -f production-issuer.yaml
 kubectl describe issuer letsencrypt-prod -->
 
 kubectl apply -f production-issuer_system.yaml
@@ -114,5 +121,5 @@ helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kub
  查看默认配置
  kubeadm join 192.168.123.142:6443 --token ne2a1x.huxa0hjzhuxhzoip --discovery-token-ca-cert-hash sha256:b6237c99d0fc1e93bd852b1d34a0a0161a77122193e06f655e6b764a9e1d0758 --node-name node2
 
-helm fetch stable/jenkins 
+helm fetch stable/jenkins
 helm template . --name istio-init --namespace istio-system > istio-init.yaml

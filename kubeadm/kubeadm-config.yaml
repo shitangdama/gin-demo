@@ -1,4 +1,4 @@
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta1
 kind: InitConfiguration
 localAPIEndpoint:
   bindPort: 6443
@@ -8,7 +8,7 @@ nodeRegistration:
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
-kubernetesVersion: v1.16.3
+kubernetesVersion: v1.17.0
 networking:
   podSubnet: 10.244.0.0/16
 apiServer:
