@@ -114,7 +114,9 @@ readinessProbe:
   timeoutSeconds: 5
 
 imagePullSecrets: []
-nodeSelector: {}
+nodeSelector: {
+  kubernetes.io/hostname: node2
+}
 tolerations: []
 affinity: {}
 

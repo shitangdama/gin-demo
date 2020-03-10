@@ -15,7 +15,8 @@ Update your local Helm chart repository cache
 
 helm repo update
 
-helm install --name-template cert-manager --namespace cert-manager --version v0.12.0-beta.1 jetstack/cert-manager
+helm install --name-template cert-manager --namespace cert-manager --version v0.12.0 jetstack/cert-manager
+
 
 
 kubectl run -it --rm --image=infoblox/dnstools dns-client --overrides='{"spec": {"nodeSelector": { "name": "node2" }}}'

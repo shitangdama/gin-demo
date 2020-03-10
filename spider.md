@@ -1,0 +1,1 @@
+ docker run --privileged -d -p 6080:6080 -p 5554:5554 -p 5555:5555 -e DEVICE="Nexus 5" --name android-container budtmo/docker-android-x86-9.0

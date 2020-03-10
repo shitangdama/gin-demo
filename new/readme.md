@@ -6,13 +6,14 @@
 
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 
-sudo kubeadm init --config ./kubeadm-config.yaml
+sudo kubeadm init --config ./new.yaml
+sudo kubeadm init --service-cidr "10.96.0.0/12" --pod-network-cidr "172.16.0.0/12" --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-kubectl apply -f https://docs.projectcalico.org/v3.10/manifests/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 <!-- dns wenti -->
 https://blog.csdn.net/u011663005/article/details/87937800
 
@@ -27,7 +28,7 @@ kubectl taint nodes node1 node.kubernetes.io/unreachable:NoSchedule-
 
 kubeadm token create --print-join-command
 
-kubeadm join 192.168.123.142:6443 --token 85e3cw.vjhe7nm0s3dnfg2u --discovery-token-ca-cert-hash sha256:41d4e0ed2ebd4f4a2854605f84ab4181a7dc3d41b4d6432503e6baf896516253 --node-name node2
+kubeadm join 192.168.123.142:6443 --token po5m1n.p7zquiv9wfx17l41     --discovery-token-ca-cert-hash sha256:7cd7eec10824463e1a356d849e33873d78baf379d6da3a7b7c8c67d759aea313 --node-name node2
 
 
 kubectl apply -f ./ingress/nginx-ingress.yaml

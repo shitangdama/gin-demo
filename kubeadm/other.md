@@ -32,3 +32,13 @@ clusterrole 可以跨namespace
 - 非资源型的路径，例如/healthz
 - 包含全部命名空间的资源，例如pods
 
+kubectl describe secrets $(kubectl get secrets -n kube-system |grep admin |cut -f1 -d ' ') -n kube-system |grep -E '^token' |cut -f2 -d':'|tr -d '\t'|tr -d ' '
+# 将TOken设成环境变量
+ TOKEN=$(kubectl describe secrets $(kubectl get secrets -n kube-system |grep admin |cut -f1 -d ' ') -n kube-system |grep -E '^token' |cut -f2 -d':'|tr -d '\t'|tr -d ' ')
+# 获取APIserver的地址端口
+kubectl config view |grep server|cut -f 2- -d ":" | tr -d " "
+# 将APIserver的地址端口设置环境变量
+APISERVER=$(kubectl config view |grep server|cut -f 2- -d ":" | tr -d " ")
+通过设置HTTP标头，通过Token认证访问APIserver
+
+curl -H "Authorization: Bearer $TOKEN" $APISERVER/api  --insecure

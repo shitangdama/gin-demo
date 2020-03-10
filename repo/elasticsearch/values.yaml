@@ -205,7 +205,7 @@ schedulerName: ""
 
 imagePullSecrets: []
 nodeSelector: {
-  kubernetes.io/hostname: node1
+  kubernetes.io/hostname: node2
 }
 tolerations: []
 

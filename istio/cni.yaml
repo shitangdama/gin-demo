@@ -1,0 +1,16 @@
+apiVersion: install.istio.io/v1alpha2
+kind: IstioControlPlane
+spec:
+  cni:
+    enabled: true
+    components:
+      namespace: kube-system
+  values:
+    cni:
+      excludeNamespaces:
+        - istio-system
+        - kube-system
+        - monitoring
+  unvalidatedValues:
+    cni:
+      logLevel: info

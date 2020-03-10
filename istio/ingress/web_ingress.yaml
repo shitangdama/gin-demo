@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: istio-system
+  # annotations:
+  #   kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+    - host: p8s.shitangdama.cn
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: prometheus
+            servicePort: 9090

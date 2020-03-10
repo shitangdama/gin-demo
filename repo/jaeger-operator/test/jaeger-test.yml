@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jaeger-test
-  annotations:
-    "scheduler.alpha.kubernetes.io/critical-pod": "true"
+  # annotations:
+  #   "scheduler.alpha.kubernetes.io/critical-pod": "true"
 spec:
   selector:
     matchLabels:
@@ -16,8 +16,8 @@ spec:
       containers:
       - name: hotrod
         image: jaegertracing/example-hotrod:latest
-        env:
-        - name: JAEGER_AGENT_HOST
-          value: "localhost"
-        - name: JAEGER_AGENT_PORT
-          value: "6831"
+        # env:
+        # - name: JAEGER_AGENT_HOST
+        #   value: "localhost"
+        # - name: JAEGER_AGENT_PORT
+        #   value: "6831"
